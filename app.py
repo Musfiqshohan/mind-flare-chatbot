@@ -33,7 +33,7 @@ def webhook_handle():
             'recipient': {
                 'id': sender_id
             },
-            'message': {"text": "hello, world! good luck and be safe during corona"}
+            'message': {"text": "hello, world! good luck!x"}
         }
         response = requests.post('https://graph.facebook.com/v5.0/me/messages?access_token=' + PAGE_TOKEN,
                                  json=request_body).json()
