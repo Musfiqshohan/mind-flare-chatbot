@@ -3,10 +3,11 @@
 
 import credentials, requests
 from flask import Flask, request
+import gunicorn
 app = Flask(__name__)
 
 WEBHOOK_VERIFY_TOKEN="Mind-Flare-507163"
-PAGE_TOKEN= "EAAINYZCdZAxdwBAOpEqwYwEhUaD6vWHbQZAajHJqHZBSwEDYmKl4Rt8HDzUhaCyfYNdAcFfRA9ZB9i8vMYHvDGjpfUHl6d9n5xnZCZCVVoYfjis3eDPR5ZBCHivnj6qRZBRCXetN6slhkziDrglCvJBFZBNLB8JZAtR47faYIy8BxYvjAZDZD"
+PAGE_TOKEN= "EAAINYZCdZAxdwBAEXxiZA7ZAJ4UoUo2pMMObh9yg3D5k0eQ9twvF9IpI02yAdxPQNIPmoLFGCwrorpLM9gDoZAvZCCZBGsr0z8xZBehQA2ICaziO0jtxxhPZBhObTg3KgCKrcgpqvMtdGFpMietZAQwexfqzxdZAoqVZBFhZBsgOcYVkWwwZDZD"
 # Adds support for GET requests to our webhook
 @app.route('/webhook',methods=['GET'])
 def webhook():
