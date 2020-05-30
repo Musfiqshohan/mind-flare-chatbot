@@ -1,0 +1,2 @@
+1. push to git
+2. push to heroku too.
