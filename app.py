@@ -7,7 +7,7 @@ import gunicorn
 app = Flask(__name__)
 
 WEBHOOK_VERIFY_TOKEN="Mind-Flare-507163"
-PAGE_TOKEN= "EAAINYZCdZAxdwBAEXxiZA7ZAJ4UoUo2pMMObh9yg3D5k0eQ9twvF9IpI02yAdxPQNIPmoLFGCwrorpLM9gDoZAvZCCZBGsr0z8xZBehQA2ICaziO0jtxxhPZBhObTg3KgCKrcgpqvMtdGFpMietZAQwexfqzxdZAoqVZBFhZBsgOcYVkWwwZDZD"
+PAGE_TOKEN= "EAAINYZCdZAxdwBABmEfo72IKCh7ZA39GeKM29pVnuq4E0i7olPJPVV9hmaZBZBnJBMqowGn2qTecNkHCVZBggCEfnur1XlxMo8XDlNSSOPwvZBqvGfU92S0VrGqAlkv2MWM2ksHBAAJIg0qLvFgE7tik5BnpOaBGZAjZCeiN5vruZBkQZDZD"
 # Adds support for GET requests to our webhook
 @app.route('/webhook',methods=['GET'])
 def webhook():
