@@ -28,12 +28,13 @@ def webhook_handle():
     print("Printing",data)
     message = data['entry'][0]['messaging'][0]['message']
     sender_id = data['entry'][0]['messaging'][0]['sender']['id']
+    sender_name=data['entry'][0]['messaging'][0]['sender']['first_name']
     if message['text']:
         request_body = {
             'recipient': {
                 'id': sender_id
             },
-            'message': {"text": "hello, world123!"}
+            'message': {"text": "hello,"+sender_name+" world123!"}
         }
         response = requests.post('https://graph.facebook.com/v5.0/me/messages?access_token=' + PAGE_TOKEN,
                                  json=request_body).json()
