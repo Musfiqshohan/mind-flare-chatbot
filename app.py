@@ -25,7 +25,6 @@ def webhook():
 @app.route("/webhook", methods=['POST'])
 def webhook_handle():
     data = request.get_json()
-    print(data)
     message = data['entry'][0]['messaging'][0]['message']
     sender_id = data['entry'][0]['messaging'][0]['sender']['id']
     if message['text']:
@@ -33,10 +32,9 @@ def webhook_handle():
             'recipient': {
                 'id': sender_id
             },
-            # 'message': {"text": "hello"+data['entry'][0]['messaging'][0]['sender']['first_name']+ "life is short! do something"}
             'message': {"text": "hello, world!"}
         }
-        response = requests.post('https://graph.facebook.com/v5.0/me/messages?access_token=' + PAGE_TOKEN,
+        response = requests.post('https://graph.facebook.com/v5.0/me/messages?access_token=' + credentials.TOKEN,
                                  json=request_body).json()
         return response
     return 'ok'
