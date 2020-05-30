@@ -1,17 +1,15 @@
+
 # from flask_ngrok import run_with_ngrok
 
 import credentials, requests
 from flask import Flask, request
 import gunicorn
-
 app = Flask(__name__)
 
-WEBHOOK_VERIFY_TOKEN = "Mind-Flare-507163"
-PAGE_TOKEN = "EAAINYZCdZAxdwBAEXxiZA7ZAJ4UoUo2pMMObh9yg3D5k0eQ9twvF9IpI02yAdxPQNIPmoLFGCwrorpLM9gDoZAvZCCZBGsr0z8xZBehQA2ICaziO0jtxxhPZBhObTg3KgCKrcgpqvMtdGFpMietZAQwexfqzxdZAoqVZBFhZBsgOcYVkWwwZDZD"
-
-
+WEBHOOK_VERIFY_TOKEN="Mind-Flare-507163"
+PAGE_TOKEN= "EAAINYZCdZAxdwBAEXxiZA7ZAJ4UoUo2pMMObh9yg3D5k0eQ9twvF9IpI02yAdxPQNIPmoLFGCwrorpLM9gDoZAvZCCZBGsr0z8xZBehQA2ICaziO0jtxxhPZBhObTg3KgCKrcgpqvMtdGFpMietZAQwexfqzxdZAoqVZBFhZBsgOcYVkWwwZDZD"
 # Adds support for GET requests to our webhook
-@app.route('/webhook', methods=['GET'])
+@app.route('/webhook',methods=['GET'])
 def webhook():
     verify_token = request.args.get("hub.verify_token")
     # Check if sent token is correct
@@ -20,6 +18,7 @@ def webhook():
         # Responds with the challenge token from the request
         return request.args.get("hub.challenge")
     return 'Unable to authorise.'
+
 
 
 # Adds support for POST requests
@@ -34,37 +33,7 @@ def webhook_handle():
             'recipient': {
                 'id': sender_id
             },
-            "message": {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "generic",
-                        "elements": [
-                            {
-                                "title": "Welcome!",
-                                "image_url": "https://petersfancybrownhats.com/company_image.png",
-                                "subtitle": "We have the right hat for everyone.",
-                                "default_action": {
-                                    "type": "web_url",
-                                    "url": "https://petersfancybrownhats.com/view?item=103",
-                                    "webview_height_ratio": "tall",
-                                },
-                                "buttons": [
-                                    {
-                                        "type": "web_url",
-                                        "url": "https://petersfancybrownhats.com",
-                                        "title": "View Website"
-                                    }, {
-                                        "type": "postback",
-                                        "title": "Start Chatting",
-                                        "payload": "DEVELOPER_DEFINED_PAYLOAD"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            }
+            'message': {"text": "hello"+data['entry'][0]['messaging'][0]['sender']['first_name']+ "world! good luck!x"}
         }
         response = requests.post('https://graph.facebook.com/v5.0/me/messages?access_token=' + PAGE_TOKEN,
                                  json=request_body).json()
@@ -75,7 +44,6 @@ def webhook_handle():
 @app.route('/')
 def hello_world():
     return 'Hello, World1!'
-
 
 if __name__ == "__main__":
     app.run(threaded=True, port=5000)
