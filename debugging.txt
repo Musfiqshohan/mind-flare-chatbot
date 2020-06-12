@@ -1,2 +1,16 @@
 1. push to git
 2. push to heroku too.
+
+
+inspect http of ngrok in
+http://localhost:4040/inspect/http
+
+
+Payload option on Facebook Bots buttons
+https://stackoverflow.com/questions/36851079/payload-option-on-facebook-bots-buttons
+
+
+1. remove webhook
+2. add callback url
+3. add subscription field.
+4. generate token.
