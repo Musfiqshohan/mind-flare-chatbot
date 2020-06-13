@@ -54,7 +54,7 @@ def execute_psycho_test(sender_id, message , beck_questions, context_stack, PAGE
         send_single_message(sender_id, beck_message, PAGE_TOKEN)
 
         context_stack.pop() # "can we start?
-        message_text = "Now "+context_stack[-1][0]   # know features of our platform
+        message_text = context_stack[-1][0]   # know features of our platform
         context_stack.pop()
         context_stack.append((message_text,None))
 
